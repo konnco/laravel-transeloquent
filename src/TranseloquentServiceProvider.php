@@ -1,5 +1,7 @@
 <?php
 
+namespace konnco\Transeloquent;
+
 use Illuminate\Support\ServiceProvider;
 
 class TranseloquentServiceProvider extends ServiceProvider
@@ -23,9 +25,17 @@ class TranseloquentServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadMigrationsFrom(__DIR__.'/migrations/transeloquent_migrations.php');
-//        $this->publishes([
-//            __DIR__.'/migrations/transeloquent_migrations.php' => path,
-//        ]);
+        $this->publishMigrations();
+        $this->publishModels();
+    }
+
+    public function publishMigrations()
+    {
+        $this->publishes([__DIR__ . '/migrations' => database_path('migrations')], 'migrations');
+    }
+
+    public function publishModels()
+    {
+        $this->publishes([__DIR__ . '/models' => app_path()], 'model');
     }
 }

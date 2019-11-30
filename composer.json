@@ -20,5 +20,12 @@
         "psr-4": {
             "konnco\\Transeloquent\\Tests\\": "tests/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "konnco\\Transeloquent\\TranseloquentServiceProvider"
+            ]
+        }
     }
 }
