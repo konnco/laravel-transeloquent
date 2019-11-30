@@ -1,0 +1,24 @@
+{
+    "name": "konnco/laravel-transeloquent",
+    "description": "Laravel Eloquent Translatable",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Franky So",
+            "email": "frankyso.mail@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "konnco\\Transeloquent\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "konnco\\Transeloquent\\Tests\\": "tests/"
+        }
+    }
+}
