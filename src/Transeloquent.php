@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\App;
 
 trait Transeloquent
 {
-//    protected $transeloquentExclude = [];
     protected $translatedAttributes = [];
 
     public static function bootTranseloquent(): void
@@ -82,7 +81,7 @@ trait Transeloquent
 
         if ($defaultLocale != $currentLocale) {
             $attributes = collect($this->attributesToArray());
-            foreach (array_merge($this->transeloquentExclude ?? [], ['id', 'created_at', 'updated_at']) as $value) {
+            foreach (array_merge($this->transeloquentExcluded ?? [], ['id', 'created_at', 'updated_at']) as $value) {
                 $attributes->forget($value);
             };
 

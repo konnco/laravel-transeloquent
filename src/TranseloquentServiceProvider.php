@@ -31,11 +31,11 @@ class TranseloquentServiceProvider extends ServiceProvider
 
     public function publishMigrations()
     {
-        $this->publishes([__DIR__ . '/migrations' => database_path('migrations')], 'migrations');
+        $this->publishes([__DIR__ . '/migrations' => database_path('migrations')], 'transeloquent');
     }
 
     public function publishModels()
     {
-        $this->publishes([__DIR__ . '/models' => app_path()], 'model');
+        $this->publishes([__DIR__ . '/models' => app_path()], 'transeloquent');
     }
 }

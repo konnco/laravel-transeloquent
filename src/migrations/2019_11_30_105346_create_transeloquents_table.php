@@ -28,7 +28,7 @@ class CreateTranseloquentsTable extends Migration
             $table->string('key');
             $table->text('value');
             $table->string('locale', 6);
-            $table->morphs("transable")->nullable();
+            $table->nullableMorphs("transable");
             $table->timestamps();
         });
     }
