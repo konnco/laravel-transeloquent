@@ -43,6 +43,37 @@ add this configuration into your `config/app.php`
     ],
 ```
 
+Add transeloquent traits into your model
+
+```php
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class News extends Model {
+    use \konnco\Transeloquent\Transeloquent;
+}
+```
+
+and the default excluded field is `id`, `created_at`, `updated_at` these fields will not saved into database.
+
+if you want to add more excluded field you may have to add `$transeloquentExcluded` into your model.
+
+```php
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use konnco\Transeloquent\Transeloquent;
+
+class News extends Model {
+    use Transeloquent;
+    
+    protected $transeloquentExcluded = ['dont-translate-1','dont-translate-2'];
+}
+```
+
 ## Quick Example
 ### Getting translated attributes
 Original Attributes In English or based on configuration in `app.transeloquent.default_locale`
