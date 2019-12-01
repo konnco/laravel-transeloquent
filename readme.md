@@ -6,7 +6,7 @@ This is a Laravel package for translatable models. Its goal is to remove the com
 
 Maybe out there there's so many package that work the same way, and has more performance, but the purpose this package is make your development time faster.
 
-this package is still in alpha version, so the update may broke your application.
+***This package is still in alpha version, so the update may broke your application.***
 
 ## Installation
 ```php
