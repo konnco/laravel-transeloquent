@@ -13,9 +13,7 @@ class TranseloquentServiceProvider extends ServiceProvider
      */
     public function register()
     {
-//        $this->app->singleton('iPaymu', function () {
-//            return new iPaymu(config('ipaymu.key'), [url(config('ipaymu.url_return')), url(config('ipaymu.url_notify')), url(config('ipaymu.url_cancel'))]);
-//        });
+        //
     }
 
     /**

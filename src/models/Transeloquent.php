@@ -17,10 +17,11 @@ use Illuminate\Database\Eloquent\Model;
 class Transeloquent extends Model
 {
     protected $fillable = ["value"];
+
     /**
      * Get the owning commentable model.
      */
-    public function transable()
+    public function translatable()
     {
         return $this->morphTo();
     }

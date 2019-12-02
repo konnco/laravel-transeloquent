@@ -12,7 +12,6 @@
 
 namespace konnco\Transeloquent;
 
-//use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 
@@ -58,7 +57,7 @@ trait Transeloquent
 
     public function transeloquent()
     {
-        return $this->morphMany(\App\Transeloquent::class, "transable")->where('locale', $this->currentLocale());
+        return $this->morphMany(\App\Transeloquent::class, "translatable")->where('locale', $this->currentLocale());
     }
 
     public function getAttribute($key)
