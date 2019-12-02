@@ -23,6 +23,16 @@ php artisan migrate
 
 ## Configuration
 add this configuration into your `config/app.php`
+
+```php    
+    'transeloquent' => [
+        // default locale for model
+        'model_locale' => 'en'
+    ],
+```
+
+below this section
+
 ```php
 /*
     |--------------------------------------------------------------------------
@@ -36,11 +46,7 @@ add this configuration into your `config/app.php`
     */
     
     'locale' => 'en',
-    
-    'transeloquent' => [
-        // default locale for model
-        'model_locale' => 'en'
-    ],
+
 ```
 
 Add transeloquent traits into your model
