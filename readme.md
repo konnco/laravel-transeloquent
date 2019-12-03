@@ -2,7 +2,7 @@
 
 **If you want the faster way to translate your model and store it in a single table, this package is built for you.**
 
-[![Build Status](https://travis-ci.org/konnco/laravel-transeloquent.svg?branch=master)](https://travis-ci.org/konnco/laravel-transeloquent)
+[![Build Status](https://travis-ci.org/Konnco/laravel-transeloquent.svg?branch=master)](https://travis-ci.org/Konnco/laravel-transeloquent)
 [![Latest Stable Version](https://poser.pugx.org/konnco/laravel-transeloquent/v/stable)](https://packagist.org/packages/konnco/laravel-transeloquent)
 [![Total Downloads](https://poser.pugx.org/konnco/laravel-transeloquent/downloads)](https://packagist.org/packages/konnco/laravel-transeloquent)
 [![Latest Unstable Version](https://poser.pugx.org/konnco/laravel-transeloquent/v/unstable)](https://packagist.org/packages/konnco/laravel-transeloquent)
