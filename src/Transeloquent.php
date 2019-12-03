@@ -12,15 +12,32 @@
 
 namespace konnco\Transeloquent;
 
-//use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 
 
 trait Transeloquent
 {
-    protected $translatedAttributes = [];
+    /**
+     * Current model locale
+     *
+     * @var null
+     */
+    protected $currentLocale = null;
 
+    /**
+     * Transeloquent variable container
+     *
+     * @var array
+     */
+    protected $transeloquent = [
+        "attributes" => [],
+        "translations" => [],
+    ];
+
+    /**
+     * Booting process to registering eloquent events
+     */
     public static function bootTranseloquent(): void
     {
         static::saving(function (Model $model) {
@@ -32,52 +49,120 @@ trait Transeloquent
 
         static::retrieved(function (Model $model) {
             $translated = [];
-            $translate = $model->transeloquent()->get();
+            $translate = $model->transeloquent($model->getCurrentLocale())->get();
             $translate->each(function ($field) use (&$translated) {
                 $translated[$field->key] = $field->value;
             });
 
             $model->setTranslatedAttributes($translated);
+            $model->getAvailableTranslations();
         });
     }
 
-    public function setTranslatedAttributes($translates = [])
+    /**
+     * fetch Available Translations
+     */
+    public function getAvailableTranslations()
     {
-        $this->translatedAttributes = $translates;
+        return collect($this->transeloquent()->select('locale')->groupBy('locale')->get()->toArray())->values();
     }
 
-    public function currentLocale()
+    /**
+     * set Default Locale
+     *
+     * @param $lang
+     */
+    public
+    function locale($lang)
     {
-        return App::getLocale();
+        $this->currentLocale = $lang;
     }
 
-    public function defaultLocale()
+    /**
+     * Setting Raw Translation attributes
+     *
+     * @param array $translates
+     */
+    public
+    function setRawTranslatedAttributes($translates = [])
+    {
+        $this->transeloquent['attributes'] = $translates;
+    }
+
+    /**
+     * Get current locale
+     *
+     * @return string
+     */
+    private
+    function getCurrentLocale()
+    {
+        return $this->currentLocale ?? App::getLocale();
+    }
+
+    /**
+     * Get default locale
+     *
+     * @return \Illuminate\Config\Repository|mixed
+     */
+    public
+    function getDefaultLocale()
     {
         return config('app.transeloquent.model_locale');
     }
 
-    public function transeloquent()
+
+    public
+    function transeloquent($locale = null)
     {
-        return $this->morphMany(\App\Transeloquent::class, "transable")->where('locale', $this->currentLocale());
+        $transeloquentObject = $this->morphMany(\App\Transeloquent::class, "transable");
+        if ($locale != null) {
+            $transeloquentObject->where('locale', $locale);
+        }
+
+        return $transeloquentObject;
     }
 
-    public function getAttribute($key)
+    /**
+     * Override parents functions to get single attributes
+     *
+     * @param $key
+     * @return mixed
+     */
+    public
+    function getAttribute($key)
     {
-        $defaultLocale = $this->defaultLocale();
-        $currentLocale = $this->currentLocale();
+        $defaultLocale = $this->getDefaultLocale();
+        $currentLocale = $this->getCurrentLocale();
 
         if ($defaultLocale == $currentLocale) {
             return parent::getAttribute($key);
         } else {
-            return @$this->translatedAttributes[$key] ?? parent::getAttribute($key);
+            return @$this->transeloquent['attributes'][$key] ?? parent::getAttribute($key);
         }
     }
 
-
-    public function saveTranslations()
+    /**
+     * Check Translation Exists
+     *
+     * @param $lang
+     */
+    public
+    function translationExist($lang)
     {
-        $defaultLocale = $this->defaultLocale();
-        $currentLocale = $this->currentLocale();
+        return (array_search($lang, $this->transeloquent["translations"]) >= 0);
+    }
+
+    /**
+     * Saving Translation
+     *
+     * @return bool
+     */
+    public
+    function saveTranslations()
+    {
+        $defaultLocale = $this->getDefaultLocale();
+        $currentLocale = $this->getCurrentLocale();
 
         if ($defaultLocale != $currentLocale) {
             $attributes = collect($this->attributesToArray());
@@ -88,15 +173,15 @@ trait Transeloquent
             foreach ($attributes as $key => $attribute) {
                 if ($attribute != null) {
 
-                    $translate = $this->transeloquent()->where('key', $key)->first();
+                    $translate = $this->transeloquent($this->getCurrentLocale())->where('key', $key)->first();
                     if ($translate == null) {
                         $translate = new \App\Transeloquent();
                     }
-                    $translate->locale = $this->currentLocale();
+                    $translate->locale = $this->getCurrentLocale();
                     $translate->key = $key;
                     $translate->value = $attribute;
                     $translate->save();
-                    $this->transeloquent()->save($translate);
+                    $this->transeloquent($this->getCurrentLocale())->save($translate);
                 }
             }
 
@@ -105,14 +190,26 @@ trait Transeloquent
         return true;
     }
 
-    public function deleteTranslations()
+    /**
+     * Delete Translation
+     *
+     * @return mixed
+     */
+    public
+    function deleteTranslations()
     {
-        if(!$this->isSoftDelete()){
+        if (!$this->isSoftDelete()) {
             return $this->transeloquent()->delete();
         }
     }
 
-    public function isSoftDelete()
+    /**
+     * Checking Model is softdeleting or not
+     *
+     * @return bool
+     */
+    public
+    function isSoftDelete()
     {
         return in_array('Illuminate\Database\Eloquent\SoftDeletes', class_uses($this)) && !$this->forceDeleting;
     }
