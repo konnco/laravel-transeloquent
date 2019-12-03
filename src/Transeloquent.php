@@ -72,8 +72,7 @@ trait Transeloquent
      *
      * @param $lang
      */
-    public
-    function locale($lang)
+    public function locale($lang)
     {
         $this->currentLocale = $lang;
     }
@@ -83,8 +82,7 @@ trait Transeloquent
      *
      * @param array $translates
      */
-    public
-    function setRawTranslatedAttributes($translates = [])
+    public function setRawTranslatedAttributes($translates = [])
     {
         $this->transeloquent['attributes'] = $translates;
     }
@@ -94,8 +92,7 @@ trait Transeloquent
      *
      * @return string
      */
-    private
-    function getCurrentLocale()
+    private function getCurrentLocale()
     {
         return $this->currentLocale ?? App::getLocale();
     }
@@ -105,21 +102,18 @@ trait Transeloquent
      *
      * @return \Illuminate\Config\Repository|mixed
      */
-    public
-    function getDefaultLocale()
+    public function getDefaultLocale()
     {
         return config('app.transeloquent.model_locale');
     }
 
 
-    public
-    function transeloquent($locale = null)
+    public function transeloquent($locale = null)
     {
-        $transeloquentObject = $this->morphMany(\App\Transeloquent::class, "transable");
+        $transeloquentObject = $this->morphMany(\App\Transeloquent::class, "translatable");
         if ($locale != null) {
             $transeloquentObject->where('locale', $locale);
         }
-
         return $transeloquentObject;
     }
 
@@ -129,8 +123,7 @@ trait Transeloquent
      * @param $key
      * @return mixed
      */
-    public
-    function getAttribute($key)
+    public function getAttribute($key)
     {
         $defaultLocale = $this->getDefaultLocale();
         $currentLocale = $this->getCurrentLocale();
@@ -147,8 +140,7 @@ trait Transeloquent
      *
      * @param $lang
      */
-    public
-    function translationExist($lang)
+    public function translationExist($lang)
     {
         return (array_search($lang, $this->transeloquent["translations"]) >= 0);
     }
@@ -158,8 +150,7 @@ trait Transeloquent
      *
      * @return bool
      */
-    public
-    function saveTranslations()
+    public function saveTranslations()
     {
         $defaultLocale = $this->getDefaultLocale();
         $currentLocale = $this->getCurrentLocale();
@@ -195,8 +186,7 @@ trait Transeloquent
      *
      * @return mixed
      */
-    public
-    function deleteTranslations()
+    public function deleteTranslations()
     {
         if (!$this->isSoftDelete()) {
             return $this->transeloquent()->delete();
@@ -208,8 +198,7 @@ trait Transeloquent
      *
      * @return bool
      */
-    public
-    function isSoftDelete()
+    public function isSoftDelete()
     {
         return in_array('Illuminate\Database\Eloquent\SoftDeletes', class_uses($this)) && !$this->forceDeleting;
     }
