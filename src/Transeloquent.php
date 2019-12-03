@@ -54,7 +54,7 @@ trait Transeloquent
                 $translated[$field->key] = $field->value;
             });
 
-            $model->setTranslatedAttributes($translated);
+            $model->setRawTranslatedAttributes($translated);
             $model->getAvailableTranslations();
         });
     }
@@ -72,7 +72,7 @@ trait Transeloquent
      *
      * @param $lang
      */
-    public function locale($lang)
+    public function setLocale($lang)
     {
         $this->currentLocale = $lang;
     }

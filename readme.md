@@ -105,10 +105,22 @@ App::setLocale('id');
 $post = Post::first();
 $post->title = "Post Pertama Saya";
 $post->save();
+
+// or set locale for specific model
+
+$post = Post::first();
+$post->setLocale('id')
+$post->title = "Post Pertama Saya";
+$post->save();
 ```
 
-it will directly save your translation into database.
+### Checking if Translation Available
+```php
+$post = Post::first();
+$post->translationExist('id'); //return boolean
+```
 
 ## Authors
 
 * **Franky So** - *Initial work* - [Konnco](https://github.com/konnco)
+* **Rizal Nasution** - *Initial work* - [Konnco](https://github.com/konnco)
