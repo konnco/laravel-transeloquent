@@ -7,7 +7,7 @@
 [![Total Downloads](https://poser.pugx.org/konnco/laravel-transeloquent/downloads)](https://packagist.org/packages/konnco/laravel-transeloquent)
 [![Latest Unstable Version](https://poser.pugx.org/konnco/laravel-transeloquent/v/unstable)](https://packagist.org/packages/konnco/laravel-transeloquent)
 [![License](https://poser.pugx.org/konnco/laravel-transeloquent/license)](https://packagist.org/packages/konnco/laravel-transeloquent)
-[![StyleCI](https://github.styleci.io/repos/59740344/shield?branch=master)](https://github.styleci.io/repos/59740344)
+[![StyleCI](https://github.styleci.io/repos/225027362/shield?branch=master)](https://github.styleci.io/repos/225027362)
 
 This is a Laravel package for translatable models. Its goal is to remove the complexity in retrieving and storing multilingual model instances. With this package you write less code, as the translations are being fetched/saved when you fetch/save your instance.
 
