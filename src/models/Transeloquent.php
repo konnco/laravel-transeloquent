@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transeloquent extends Model
 {
-    protected $fillable = ["value"];
+    protected $fillable = ['value'];
 
     /**
      * Get the owning commentable model.

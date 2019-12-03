@@ -15,28 +15,27 @@ namespace konnco\Transeloquent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 
-
 trait Transeloquent
 {
     /**
-     * Current model locale
+     * Current model locale.
      *
      * @var null
      */
     protected $currentLocale = null;
 
     /**
-     * Transeloquent variable container
+     * Transeloquent variable container.
      *
      * @var array
      */
     protected $transeloquent = [
-        "attributes" => [],
-        "translations" => [],
+        'attributes'   => [],
+        'translations' => [],
     ];
 
     /**
-     * Booting process to registering eloquent events
+     * Booting process to registering eloquent events.
      */
     public static function bootTranseloquent(): void
     {
@@ -60,7 +59,7 @@ trait Transeloquent
     }
 
     /**
-     * fetch Available Translations
+     * fetch Available Translations.
      */
     public function getAvailableTranslations()
     {
@@ -68,7 +67,7 @@ trait Transeloquent
     }
 
     /**
-     * set Default Locale
+     * set Default Locale.
      *
      * @param $lang
      */
@@ -78,7 +77,7 @@ trait Transeloquent
     }
 
     /**
-     * Setting Raw Translation attributes
+     * Setting Raw Translation attributes.
      *
      * @param array $translates
      */
@@ -88,7 +87,7 @@ trait Transeloquent
     }
 
     /**
-     * Get current locale
+     * Get current locale.
      *
      * @return string
      */
@@ -98,7 +97,7 @@ trait Transeloquent
     }
 
     /**
-     * Get default locale
+     * Get default locale.
      *
      * @return \Illuminate\Config\Repository|mixed
      */
@@ -107,20 +106,21 @@ trait Transeloquent
         return config('app.transeloquent.model_locale');
     }
 
-
     public function transeloquent($locale = null)
     {
-        $transeloquentObject = $this->morphMany(\App\Transeloquent::class, "translatable");
+        $transeloquentObject = $this->morphMany(\App\Transeloquent::class, 'translatable');
         if ($locale != null) {
             $transeloquentObject->where('locale', $locale);
         }
+
         return $transeloquentObject;
     }
 
     /**
-     * Override parents functions to get single attributes
+     * Override parents functions to get single attributes.
      *
      * @param $key
+     *
      * @return mixed
      */
     public function getAttribute($key)
@@ -136,17 +136,17 @@ trait Transeloquent
     }
 
     /**
-     * Check Translation Exists
+     * Check Translation Exists.
      *
      * @param $lang
      */
     public function translationExist($lang)
     {
-        return (array_search($lang, $this->transeloquent["translations"]) >= 0);
+        return array_search($lang, $this->transeloquent['translations']) >= 0;
     }
 
     /**
-     * Saving Translation
+     * Saving Translation.
      *
      * @return bool
      */
@@ -159,11 +159,10 @@ trait Transeloquent
             $attributes = collect($this->attributesToArray());
             foreach (array_merge($this->transeloquentExcluded ?? [], ['id', 'created_at', 'updated_at']) as $value) {
                 $attributes->forget($value);
-            };
+            }
 
             foreach ($attributes as $key => $attribute) {
                 if ($attribute != null) {
-
                     $translate = $this->transeloquent($this->getCurrentLocale())->where('key', $key)->first();
                     if ($translate == null) {
                         $translate = new \App\Transeloquent();
@@ -178,11 +177,12 @@ trait Transeloquent
 
             $this->setRawAttributes($this->getOriginal());
         }
+
         return true;
     }
 
     /**
-     * Delete Translation
+     * Delete Translation.
      *
      * @return mixed
      */
@@ -194,7 +194,7 @@ trait Transeloquent
     }
 
     /**
-     * Checking Model is softdeleting or not
+     * Checking Model is softdeleting or not.
      *
      * @return bool
      */
