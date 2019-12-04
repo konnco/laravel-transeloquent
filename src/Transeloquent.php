@@ -13,7 +13,6 @@
 namespace konnco\Transeloquent;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 
 trait Transeloquent
