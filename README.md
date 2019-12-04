@@ -71,7 +71,22 @@ class News extends Model {
 
 and the default excluded field is `id`, `created_at`, `updated_at` these fields will not saved into database.
 
-if you want to add more excluded field you may have to add `$transeloquentExcluded` into your model.
+if you want to add only some fields to be translated, you may have to add `$onlyFields` into your model.
+```php
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use konnco\Transeloquent\Transeloquent;
+
+class News extends Model {
+    use Transeloquent;
+    
+    protected $onlyFields = ['only-translate-1', 'only-translate-2'];
+}
+```
+
+if you want to add more excluded field from translated, you may have to add `$excludeFields` into your model.
 
 ```php
 namespace App;
@@ -83,9 +98,10 @@ use konnco\Transeloquent\Transeloquent;
 class News extends Model {
     use Transeloquent;
     
-    protected $transeloquentExcluded = ['dont-translate-1','dont-translate-2'];
+    protected $excludeFields = ['dont-translate-1', 'dont-translate-2'];
 }
 ```
+**Note** : If you have set `$onlyFields` variable, it will be executed first. Make sure you don't use `$onlyFields` variable in your model if you want to use `$excludeFields` variable.
 
 ## Quick Example
 ### Getting translated attributes

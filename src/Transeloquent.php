@@ -13,6 +13,7 @@
 namespace konnco\Transeloquent;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 
 trait Transeloquent
@@ -146,6 +147,36 @@ trait Transeloquent
     }
 
     /**
+     * Set Excluded these Fields from Translate.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function excludeAttributes()
+    {
+        $attributes = collect($this->attributesToArray());
+        foreach (array_merge($this->excludeFields ?? [], ['id', 'created_at', 'updated_at']) as $value) {
+            $filtered = $attributes->forget($value);
+        }
+
+        return $filtered;
+    }
+
+    /**
+     * Set Only these Fields to Translate.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function onlyAttributes()
+    {
+        $attributes = collect($this->attributesToArray());
+        foreach ($this->onlyFields ?? [] as $value) {
+            $filtered = $attributes->only($value);
+        }
+
+        return $filtered;
+    }
+
+    /**
      * Saving Translation.
      *
      * @return bool
@@ -156,10 +187,7 @@ trait Transeloquent
         $currentLocale = $this->getCurrentLocale();
 
         if ($defaultLocale != $currentLocale) {
-            $attributes = collect($this->attributesToArray());
-            foreach (array_merge($this->transeloquentExcluded ?? [], ['id', 'created_at', 'updated_at']) as $value) {
-                $attributes->forget($value);
-            }
+            $attributes = isset($this->onlyFields) ? $this->onlyAttributes() : $this->excludeAttributes();
 
             foreach ($attributes as $key => $attribute) {
                 if ($attribute != null) {
