@@ -151,10 +151,10 @@ trait Transeloquent
      *
      * @return \Illuminate\Support\Collection
      */
-    public function excludeAttributes()
+    public function translateExcept()
     {
         $attributes = collect($this->attributesToArray());
-        foreach (array_merge($this->excludeFields ?? [], ['id', 'created_at', 'updated_at']) as $value) {
+        foreach (array_merge($this->translateExcept ?? [], ['id', 'created_at', 'updated_at']) as $value) {
             $filtered = $attributes->forget($value);
         }
 
@@ -166,10 +166,10 @@ trait Transeloquent
      *
      * @return \Illuminate\Support\Collection
      */
-    public function onlyAttributes()
+    public function translateOnlyAttributes()
     {
         $attributes = collect($this->attributesToArray());
-        foreach ($this->onlyFields ?? [] as $value) {
+        foreach ($this->translateOnly ?? [] as $value) {
             $filtered = $attributes->only($value);
         }
 
@@ -187,7 +187,7 @@ trait Transeloquent
         $currentLocale = $this->getCurrentLocale();
 
         if ($defaultLocale != $currentLocale) {
-            $attributes = isset($this->onlyFields) ? $this->onlyAttributes() : $this->excludeAttributes();
+            $attributes = isset($this->translateOnly) ? $this->translateOnlyAttributes() : $this->translateExcept();
 
             foreach ($attributes as $key => $attribute) {
                 if ($attribute != null) {
