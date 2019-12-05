@@ -1,6 +1,5 @@
 <?php
 
-
 namespace konnco\Transeloquent\Tests;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -14,11 +13,11 @@ class TranseloquentTest extends TestCase
     /** @test */
     public function testTranslate(): void
     {
-        $fruit = factory(Fruit::class)->create(["name"=>"Banana"]);
-        $fruit->setLocale("id");
-        $fruit->name = "Pisang";
+        $fruit = factory(Fruit::class)->create(['name'=>'Banana']);
+        $fruit->setLocale('id');
+        $fruit->name = 'Pisang';
         $fruit->save();
 
-        static::assertEquals("Pisang", $fruit->name);
+        static::assertEquals('Pisang', $fruit->name);
     }
 }

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Konnco\Transeloquent\Tests\models;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
