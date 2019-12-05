@@ -1,4 +1,5 @@
 <?php
+
 namespace Konnco\Transeloquent;
 
 use Illuminate\Config\Repository;
@@ -65,6 +66,7 @@ trait Transeloquent
     public function setLocale($lang)
     {
         $this->currentLocale = $lang;
+
         return $this;
     }
 
@@ -190,7 +192,7 @@ trait Transeloquent
                     $translate = $this->transeloquent($this->getCurrentLocale())->where('key', $key)->first();
                     if ($translate == null) {
                         $transeloquentModel = $this->getTranseloquentModel();
-                        $translate = new $transeloquentModel;
+                        $translate = new $transeloquentModel();
                     }
                     $translate->locale = $this->getCurrentLocale();
                     $translate->key = $key;
