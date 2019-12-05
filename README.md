@@ -29,32 +29,16 @@ php artisan migrate
 ```
 
 ## Configuration
-config your default locale `config/app.php`
+you can find transeloquent configuration here. `config/transeloquent.php`
 
-```php    
+```php
+return [
     // default locale
     'locale' => 'en',
     
     // transeloquent model
-    'model' => Konnco\Transeloquent\models\Transeloquent::class 
-```
-
-below this section
-
-```php
-/*
-    |--------------------------------------------------------------------------
-    | Application Locale Configuration
-    |--------------------------------------------------------------------------
-    |
-    | The application locale determines the default locale that will be used
-    | by the translation service provider. You are free to set this value
-    | to any of the locales which will be supported by the application.
-    |
-    */
-    
-    'locale' => 'en',
-
+    'model' => Konnco\Transeloquent\models\Transeloquent::class
+]; 
 ```
 
 Add transeloquent traits into your model
