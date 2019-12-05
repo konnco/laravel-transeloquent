@@ -10,7 +10,7 @@
  *  wahyueko17@gmail.com
  */
 
-namespace App;
+namespace Konnco\Transeloquent\models;
 
 use Illuminate\Database\Eloquent\Model;
 

@@ -19,28 +19,38 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "php": ">=7.2.0"
+    "php": ">=7.2.0",
+    "illuminate/contracts": "5.8.* || ^6.0",
+    "illuminate/database": "5.8.* || ^6.0",
+    "illuminate/support": "5.8.* || ^6.0"
+  },
+  "config": {
+    "sort-packages": true
   },
   "require-dev": {
-    "fzaninotto/faker": "^1.9@dev",
-    "mockery/mockery": "^1.2.3",
-    "phpunit/phpunit": "^8.3"
+    "orchestra/testbench": "3.8.* || ^4.0",
+    "phpunit/phpunit": "^8.0"
   },
   "autoload": {
     "psr-4": {
-      "konnco\\Transeloquent\\": "src/"
+      "Konnco\\Transeloquent\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "konnco\\Transeloquent\\Tests\\": "tests/"
+      "Konnco\\Transeloquent\\Tests\\": "tests/"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "konnco\\Transeloquent\\TranseloquentServiceProvider"
+        "Konnco\\Transeloquent\\TranseloquentServiceProvider"
       ]
     }
+  },
+  "scripts": {
+    "csfix": "php-cs-fixer fix --using-cache=no",
+    "test": "vendor/bin/phpunit",
+    "test-coverage": "vendor/bin/phpunit --coverage-html=build"
   }
 }

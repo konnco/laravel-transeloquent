@@ -1,6 +1,6 @@
 <?php
 
-namespace konnco\Transeloquent;
+namespace Konnco\Transeloquent;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -24,16 +24,23 @@ class TranseloquentServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishMigrations();
-        $this->publishModels();
+//        $this->publishModels();
+        $this->publishConfig();
     }
 
     public function publishMigrations()
     {
-        $this->publishes([__DIR__.'/migrations' => database_path('migrations')], 'transeloquent');
+        $this->publishes([__DIR__ . '/migrations' => database_path('migrations')], 'transeloquent');
     }
 
     public function publishModels()
     {
-        $this->publishes([__DIR__.'/models' => app_path()], 'transeloquent');
+        $this->publishes([__DIR__ . '/models' => app_path()], 'transeloquent');
+    }
+
+    public function publishConfig()
+    {
+        $this->publishes([__DIR__ . '/config/transeloquent.php' => config_path('transeloquent.php')], "transeloquent");
+        $this->mergeConfigFrom(__DIR__.'/config/transeloquent.php', 'transeloquent');
     }
 }

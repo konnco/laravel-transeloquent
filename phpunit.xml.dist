@@ -20,8 +20,11 @@
          verbose="true">
 
     <testsuites>
-        <testsuite name="Laravel Transeloquent Test Suite">
-            <directory suffix="Test.php">./tests/</directory>
+        <testsuite name="Package Test Suite">
+            <directory suffix=".php">./tests/</directory>
+            <exclude>./tests/factories/</exclude>
+            <exclude>./tests/migrations/</exclude>
+            <exclude>./tests/models/</exclude>
         </testsuite>
     </testsuites>
 
@@ -36,6 +39,9 @@
     </filter>
 
     <php>
-        <server name="APP_KEY" value=""/>
+        <env name="APP_KEY" value="AckfSECXIvnK5r28GVIWUAxmbBSjTsmF"/>
+        <env name="APP_ENV" value="testing"/>
+        <env name="DB_CONNECTION" value="sqlite"/>
+        <env name="DB_DATABASE" value=":memory:"/>
     </php>
 </phpunit>

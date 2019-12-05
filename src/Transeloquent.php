@@ -1,18 +1,9 @@
 <?php
-/**
- * Copyright (c) Muara Invoasi Bangsa 2019.
- *
- * Every code write on this page is belonging to MIB, don't copy or modify this page without permission from MIB.
- * more information please contact email below
- *
- *  frankyso.mail@gmail.com
- *  ijalnasution107@gmail.com
- *  wahyueko17@gmail.com
- */
+namespace Konnco\Transeloquent;
 
-namespace konnco\Transeloquent;
-
+use Illuminate\Config\Repository;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 
 trait Transeloquent
@@ -74,6 +65,7 @@ trait Transeloquent
     public function setLocale($lang)
     {
         $this->currentLocale = $lang;
+        return $this;
     }
 
     /**
@@ -99,16 +91,21 @@ trait Transeloquent
     /**
      * Get default locale.
      *
-     * @return \Illuminate\Config\Repository|mixed
+     * @return Repository|mixed
      */
     public function getDefaultLocale()
     {
-        return config('app.transeloquent.model_locale');
+        return config('transeloquent.locale');
+    }
+
+    private function getTranseloquentModel()
+    {
+        return config('transeloquent.model');
     }
 
     public function transeloquent($locale = null)
     {
-        $transeloquentObject = $this->morphMany(\App\Transeloquent::class, 'translatable');
+        $transeloquentObject = $this->morphMany($this->getTranseloquentModel(), 'translatable');
         if ($locale != null) {
             $transeloquentObject->where('locale', $locale);
         }
@@ -148,9 +145,9 @@ trait Transeloquent
     /**
      * Set Excluded these Fields from Translate.
      *
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
-    public function translateExcept()
+    private function getTranslateExcept()
     {
         $attributes = collect($this->attributesToArray());
         foreach (array_merge($this->translateExcept ?? [], ['id', 'created_at', 'updated_at']) as $value) {
@@ -163,9 +160,9 @@ trait Transeloquent
     /**
      * Set Only these Fields to Translate.
      *
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
-    public function translateOnlyAttributes()
+    private function getTranslateOnlyAttributes()
     {
         $attributes = collect($this->attributesToArray());
         foreach ($this->translateOnly ?? [] as $value) {
@@ -186,13 +183,14 @@ trait Transeloquent
         $currentLocale = $this->getCurrentLocale();
 
         if ($defaultLocale != $currentLocale) {
-            $attributes = isset($this->translateOnly) ? $this->translateOnlyAttributes() : $this->translateExcept();
+            $attributes = isset($this->translateOnly) ? $this->getTranslateOnlyAttributes() : $this->getTranslateExcept();
 
             foreach ($attributes as $key => $attribute) {
                 if ($attribute != null) {
                     $translate = $this->transeloquent($this->getCurrentLocale())->where('key', $key)->first();
                     if ($translate == null) {
-                        $translate = new \App\Transeloquent();
+                        $transeloquentModel = $this->getTranseloquentModel();
+                        $translate = new $transeloquentModel;
                     }
                     $translate->locale = $this->getCurrentLocale();
                     $translate->key = $key;
@@ -202,6 +200,7 @@ trait Transeloquent
                 }
             }
 
+            $this->setRawTranslatedAttributes($attributes);
             $this->setRawAttributes($this->getOriginal());
         }
 

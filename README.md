@@ -29,13 +29,14 @@ php artisan migrate
 ```
 
 ## Configuration
-add this configuration into your `config/app.php`
+config your default locale `config/app.php`
 
 ```php    
-    'transeloquent' => [
-        // default locale for model
-        'model_locale' => 'en'
-    ],
+    // default locale
+    'locale' => 'en',
+    
+    // transeloquent model
+    'model' => Konnco\Transeloquent\models\Transeloquent::class 
 ```
 
 below this section
@@ -93,7 +94,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use konnco\Transeloquent\Transeloquent;
+use Konnco\Transeloquent\Transeloquent;
 
 class News extends Model {
     use Transeloquent;
