@@ -44,7 +44,7 @@ trait Transeloquent
     }
 
     /**
-     * Attributes To Array
+     * Attributes To Array.
      *
      * @return array
      */
@@ -52,11 +52,12 @@ trait Transeloquent
     {
 //        dd($this->transeloquent['attributes']);
         $attributes = parent::attributesToArray();
+
         return array_merge($attributes, collect($this->transeloquent['attributes'])->toArray());
     }
 
     /**
-     * Fetch Translations from database
+     * Fetch Translations from database.
      */
     public function getTranslations()
     {
