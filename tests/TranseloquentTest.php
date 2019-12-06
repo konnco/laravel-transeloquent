@@ -20,4 +20,29 @@ class TranseloquentTest extends TestCase
 
         static::assertEquals('Pisang', $fruit->name);
     }
+
+    /** @test */
+    public function testChangeLocaleAfterGet(): void
+    {
+        $fruit = factory(Fruit::class)->create(['name'=>'Banana']);
+        $fruit->setLocale('id');
+        $fruit->name = 'Pisang';
+        $fruit->save();
+
+        $fruit = Fruit::first();
+        $fruit->setLocale('id');
+
+        static::assertEquals('Pisang', $fruit->name);
+    }
+
+    /** @test */
+    public function testToArray(): void
+    {
+        $fruit = factory(Fruit::class)->create(['name'=>'Banana']);
+        $fruit->setLocale('id');
+        $fruit->name = 'Pisang';
+        $fruit->save();
+
+        static::assertEquals('Pisang', $fruit->toArray()['name']);
+    }
 }
