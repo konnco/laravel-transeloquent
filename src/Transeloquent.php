@@ -39,15 +39,35 @@ trait Transeloquent
         });
 
         static::retrieved(function (Model $model) {
-            $translated = [];
-            $translate = $model->transeloquent($model->getCurrentLocale())->get();
-            $translate->each(function ($field) use (&$translated) {
-                $translated[$field->key] = $field->value;
-            });
-
-            $model->setRawTranslatedAttributes($translated);
-            $model->getAvailableTranslations();
+            $model->getTranslations();
         });
+    }
+
+    /**
+     * Attributes To Array
+     *
+     * @return array
+     */
+    public function attributesToArray()
+    {
+//        dd($this->transeloquent['attributes']);
+        $attributes = parent::attributesToArray();
+        return array_merge($attributes, collect($this->transeloquent['attributes'])->toArray());
+    }
+
+    /**
+     * Fetch Translations from database
+     */
+    public function getTranslations()
+    {
+        $translated = [];
+        $translate = $this->transeloquent($this->getCurrentLocale())->get();
+        $translate->each(function ($field) use (&$translated) {
+            $translated[$field->key] = $field->value;
+        });
+
+        $this->setRawTranslatedAttributes($translated);
+        $this->getAvailableTranslations();
     }
 
     /**
@@ -66,6 +86,7 @@ trait Transeloquent
     public function setLocale($lang)
     {
         $this->currentLocale = $lang;
+        $this->getTranslations();
 
         return $this;
     }
