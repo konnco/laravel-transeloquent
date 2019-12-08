@@ -50,7 +50,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class News extends Model {
-    use \konnco\Transeloquent\Transeloquent;
+    use \Konnco\Transeloquent\Transeloquent;
 }
 ```
 
@@ -62,7 +62,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use konnco\Transeloquent\Transeloquent;
+use Konnco\Transeloquent\Transeloquent;
 
 class News extends Model {
     use Transeloquent;

@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="295a3a41-dbea-4a27-8d8b-23c1bd3077dd" name="Default Changelist" comment="">
+    <list default="true" id="295a3a41-dbea-4a27-8d8b-23c1bd3077dd" name="Default Changelist" comment="Removing PHP 7.4 in Travis">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Transeloquent.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Transeloquent.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/TranseloquentTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/TranseloquentTest.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,26 +31,7 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tests/TranseloquentTest.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="477">
-              <caret line="45" column="64" selection-start-line="45" selection-start-column="64" selection-end-line="45" selection-end-column="64" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Transeloquent.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="53" column="49" lean-forward="true" selection-start-line="53" selection-start-column="49" selection-end-line="53" selection-end-column="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -204,28 +183,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane" />
       <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="laravel-transeloquent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="laravel-transeloquent" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="laravel-transeloquent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="laravel-transeloquent" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="laravel-transeloquent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="laravel-transeloquent" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -272,7 +231,8 @@
       <updated>1575443997204</updated>
       <workItem from="1575443999769" duration="415000" />
       <workItem from="1575546852107" duration="8425000" />
-      <workItem from="1575620530713" duration="1004000" />
+      <workItem from="1575620530713" duration="1897000" />
+      <workItem from="1575804443408" duration="55000" />
     </task>
     <task id="LOCAL-00001" summary="Added UnitText and Fixing Namespace">
       <created>1575552970656</created>
@@ -306,11 +266,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9844000" />
+    <option name="totallyTimeSpent" value="10792000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="npm" order="0" side_tool="true" weight="0.32995737" />
       <window_info id="Favorites" order="1" side_tool="true" />
@@ -332,7 +291,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Project" order="4" visible="true" weight="0.26599148" />
+      <window_info anchor="right" content_ui="combo" id="Project" order="4" visible="true" weight="0.26865673" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -461,17 +420,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tests/TranseloquentTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="32" column="32" lean-forward="true" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Transeloquent.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="53" column="49" lean-forward="true" selection-start-line="53" selection-start-column="49" selection-end-line="53" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TranseloquentTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="45" column="64" selection-start-line="45" selection-start-column="64" selection-end-line="45" selection-end-column="64" />
         </state>
       </provider>
     </entry>
