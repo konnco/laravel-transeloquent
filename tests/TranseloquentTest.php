@@ -13,7 +13,7 @@ class TranseloquentTest extends TestCase
     /** @test */
     public function testTranslate(): void
     {
-        $fruit = factory(Fruit::class)->create(['name'=>'Banana']);
+        $fruit = factory(Fruit::class)->create(['name' => 'Banana']);
         $fruit->setLocale('id');
         $fruit->name = 'Pisang';
         $fruit->save();
@@ -24,7 +24,7 @@ class TranseloquentTest extends TestCase
     /** @test */
     public function testChangeLocaleAfterGet(): void
     {
-        $fruit = factory(Fruit::class)->create(['name'=>'Banana']);
+        $fruit = factory(Fruit::class)->create(['name' => 'Banana']);
         $fruit->setLocale('id');
         $fruit->name = 'Pisang';
         $fruit->save();
@@ -38,11 +38,33 @@ class TranseloquentTest extends TestCase
     /** @test */
     public function testToArray(): void
     {
-        $fruit = factory(Fruit::class)->create(['name'=>'Banana']);
+        $fruit = factory(Fruit::class)->create(['name' => 'Banana']);
         $fruit->setLocale('id');
         $fruit->name = 'Pisang';
         $fruit->save();
 
         static::assertEquals('Pisang', $fruit->toArray()['name']);
+    }
+
+    /** @test */
+    public function testTranslateAvailable(): void
+    {
+        $fruit = factory(Fruit::class)->create(['name' => 'Banana']);
+        $fruit->setLocale('id');
+        $fruit->name = 'Pisang';
+        $fruit->save();
+
+        static::assertEquals(true, $fruit->translationExist('id'));
+    }
+
+    /** @test */
+    public function testTranslateNotAvailable(): void
+    {
+        $fruit = factory(Fruit::class)->create(['name' => 'Banana']);
+        $fruit->setLocale('id');
+        $fruit->name = 'Pisang';
+        $fruit->save();
+
+        static::assertEquals(false, $fruit->translationExist('my'));
     }
 }
