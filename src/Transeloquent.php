@@ -32,7 +32,8 @@ trait Transeloquent
     public static function bootTranseloquent(): void
     {
         static::saving(function (Model $model) {
-            return $model->saveTranslations();
+            $model->saveTranslations();
+            $model->getAvailableTranslations();
         });
         static::deleting(function (Model $model) {
             return $model->deleteTranslations();
@@ -40,6 +41,7 @@ trait Transeloquent
 
         static::retrieved(function (Model $model) {
             $model->getTranslations();
+            $model->getAvailableTranslations();
         });
     }
 
@@ -68,7 +70,6 @@ trait Transeloquent
         });
 
         $this->setRawTranslatedAttributes($translated);
-        $this->getAvailableTranslations();
     }
 
     /**
@@ -76,7 +77,11 @@ trait Transeloquent
      */
     public function getAvailableTranslations()
     {
-        return collect($this->transeloquent()->select('locale')->groupBy('locale')->get()->toArray())->values();
+        $this->transeloquent['translations'] = collect($this->transeloquent()->select('locale')->groupBy('locale')->get()->toArray())->map(function ($item) {
+            return $item['locale'];
+        })->toArray();
+
+        return $this->transeloquent['translations'];
     }
 
     /**
@@ -163,7 +168,7 @@ trait Transeloquent
      */
     public function translationExist($lang)
     {
-        return array_search($lang, $this->transeloquent['translations']) >= 0;
+        return array_search($lang, $this->transeloquent['translations'], true) !== false;
     }
 
     /**
