@@ -54,7 +54,7 @@ class News extends Model {
 }
 ```
 
-and the default excluded field is `id`, `created_at`, `updated_at` these fields will not saved into database.
+and the default excluded field is `id`, `created_at`, `updated_at`, `deleted_at` these fields will not saved into database.
 
 if you want to add only some fields to be translated, you may have to add `$translateOnly` into your model.
 ```php
