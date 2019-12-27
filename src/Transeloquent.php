@@ -53,8 +53,7 @@ trait Transeloquent
     public function attributesToArray()
     {
         $attributes = parent::attributesToArray();
-
-        return array_merge(collect($this->transeloquent['attributes'])->toArray(), $attributes);
+        return array_merge($attributes, collect($this->transeloquent['attributes'])->toArray());
     }
 
     /**

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="295a3a41-dbea-4a27-8d8b-23c1bd3077dd" name="Default Changelist" comment="Removing PHP 7.4 in Travis">
+    <list default="true" id="295a3a41-dbea-4a27-8d8b-23c1bd3077dd" name="Default Changelist" comment="Fixing to array and update translation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Transeloquent.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Transeloquent.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,12 +32,29 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/TranseloquentTest.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="52" column="32" lean-forward="true" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Transeloquent.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>only</find>
-      <find>onlyfields</find>
       <find>exclude</find>
       <find>only-translate-1</find>
       <find>Collection</find>
@@ -48,7 +66,6 @@
       <find>scripts</find>
       <find>sort</find>
       <find>CreateTranseloquentsTable</find>
-      <find>save</find>
       <find>save_locale</find>
       <find>v</find>
       <find>translateExcept</find>
@@ -63,6 +80,11 @@
       <find>config</find>
       <find>selocal</find>
       <find>this</find>
+      <find>array_merge($attributes, collect($this-&gt;transeloquent['attributes'])-&gt;toArray())</find>
+      <find>save</find>
+      <find>testTranslateNotAvailable</find>
+      <find>attributesToArray</find>
+      <find>toarray</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -88,8 +110,8 @@
         <option value="$PROJECT_DIR$/src/TranseloquentServiceProvider.php" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/.travis.yml" />
-        <option value="$PROJECT_DIR$/src/Transeloquent.php" />
         <option value="$PROJECT_DIR$/tests/TranseloquentTest.php" />
+        <option value="$PROJECT_DIR$/src/Transeloquent.php" />
       </list>
     </option>
   </component>
@@ -183,14 +205,29 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
       <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="laravel-transeloquent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="laravel-transeloquent" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="laravel-transeloquent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="laravel-transeloquent" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
@@ -233,6 +270,7 @@
       <workItem from="1575546852107" duration="8425000" />
       <workItem from="1575620530713" duration="1897000" />
       <workItem from="1575804443408" duration="55000" />
+      <workItem from="1577441150343" duration="1071000" />
     </task>
     <task id="LOCAL-00001" summary="Added UnitText and Fixing Namespace">
       <created>1575552970656</created>
@@ -262,14 +300,22 @@
       <option name="project" value="LOCAL" />
       <updated>1575553687295</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Fixing to array and update translation">
+      <created>1577441874430</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1577441874430</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10792000" />
+    <option name="totallyTimeSpent" value="11863000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="npm" order="0" side_tool="true" weight="0.32995737" />
       <window_info id="Favorites" order="1" side_tool="true" />
@@ -282,20 +328,46 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="8" visible="true" weight="0.3298647" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3298647" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.3298647" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.3298647" />
       <window_info anchor="right" id="Database" order="0" weight="0.32995737" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Project" order="4" visible="true" weight="0.26865673" />
+      <window_info anchor="right" content_ui="combo" id="Project" order="4" visible="true" weight="0.27132195" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
@@ -305,7 +377,8 @@
     <MESSAGE value="Fixing CI" />
     <MESSAGE value="Fixing Readme" />
     <MESSAGE value="Removing PHP 7.4 in Travis" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removing PHP 7.4 in Travis" />
+    <MESSAGE value="Fixing to array and update translation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing to array and update translation" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/tests/Unit/migrations/2019_11_30_105346_create_transeloquents_table.php" />
@@ -422,15 +495,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/TranseloquentTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="32" column="32" lean-forward="true" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
+        <state relative-caret-position="324">
+          <caret line="52" column="32" lean-forward="true" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Transeloquent.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="53" column="49" lean-forward="true" selection-start-line="53" selection-start-column="49" selection-end-line="53" selection-end-column="49" />
+        <state relative-caret-position="357">
+          <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
         </state>
       </provider>
     </entry>
