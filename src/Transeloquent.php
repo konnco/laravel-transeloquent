@@ -22,7 +22,7 @@ trait Transeloquent
      * @var array
      */
     protected $transeloquent = [
-        'attributes'   => [],
+        'attributes' => [],
         'translations' => [],
     ];
 
@@ -52,10 +52,8 @@ trait Transeloquent
      */
     public function attributesToArray()
     {
-//        dd($this->transeloquent['attributes']);
         $attributes = parent::attributesToArray();
-
-        return array_merge($attributes, collect($this->transeloquent['attributes'])->toArray());
+        return array_merge(collect($this->transeloquent['attributes'])->toArray(), $attributes);
     }
 
     /**
@@ -179,7 +177,7 @@ trait Transeloquent
     private function getTranslateExcept()
     {
         $attributes = collect($this->attributesToArray());
-        foreach (array_merge($this->translateExcept ?? [], ['id', 'created_at', 'updated_at']) as $value) {
+        foreach (array_merge($this->translateExcept ?? [], ['id', 'created_at', 'updated_at', 'deleted_at']) as $value) {
             $filtered = $attributes->forget($value);
         }
 
@@ -213,7 +211,6 @@ trait Transeloquent
 
         if ($defaultLocale != $currentLocale) {
             $attributes = isset($this->translateOnly) ? $this->getTranslateOnlyAttributes() : $this->getTranslateExcept();
-
             foreach ($attributes as $key => $attribute) {
                 if ($attribute != null) {
                     $translate = $this->transeloquent($this->getCurrentLocale())->where('key', $key)->first();
