@@ -53,7 +53,7 @@ trait Transeloquent
     public function attributesToArray()
     {
         $attributes = parent::attributesToArray();
-        return array_merge(collect($this->transeloquent['attributes'])->toArray(), $attributes);
+        return array_merge($attributes, collect($this->transeloquent['attributes'])->toArray());
     }
 
     /**
@@ -169,6 +169,12 @@ trait Transeloquent
         return array_search($lang, $this->transeloquent['translations'], true) !== false;
     }
 
+    private function getUpdatedAttributes()
+    {
+        $attributes = parent::attributesToArray();
+        return array_merge(collect($this->transeloquent['attributes'])->toArray(), $attributes);
+    }
+
     /**
      * Set Excluded these Fields from Translate.
      *
@@ -176,7 +182,7 @@ trait Transeloquent
      */
     private function getTranslateExcept()
     {
-        $attributes = collect($this->attributesToArray());
+        $attributes = collect($this->getUpdatedAttributes());
         foreach (array_merge($this->translateExcept ?? [], ['id', 'created_at', 'updated_at', 'deleted_at']) as $value) {
             $filtered = $attributes->forget($value);
         }
@@ -191,7 +197,7 @@ trait Transeloquent
      */
     private function getTranslateOnlyAttributes()
     {
-        $attributes = collect($this->attributesToArray());
+        $attributes = collect($this->getUpdatedAttributes());
         foreach ($this->translateOnly ?? [] as $value) {
             $filtered = $attributes->only($value);
         }

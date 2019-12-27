@@ -47,6 +47,22 @@ class TranseloquentTest extends TestCase
     }
 
     /** @test */
+    public function testToUpdateTranslation(): void
+    {
+        $fruit = factory(Fruit::class)->create(['name' => 'Banana']);
+        $fruit->setLocale('id');
+        $fruit->name = 'Pisang';
+        $fruit->save();
+
+        $fruit = Fruit::find($fruit->id);
+        $fruit->setLocale('id');
+        $fruit->name = 'Banapis';
+        $fruit->save();
+
+        static::assertEquals('Banapis', $fruit->toArray()['name']);
+    }
+
+    /** @test */
     public function testTranslateAvailable(): void
     {
         $fruit = factory(Fruit::class)->create(['name' => 'Banana']);
