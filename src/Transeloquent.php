@@ -173,6 +173,7 @@ trait Transeloquent
     private function getUpdatedAttributes()
     {
         $attributes = parent::attributesToArray();
+
         return array_merge(collect($this->transeloquent['attributes'])->toArray(), $attributes);
     }
 
