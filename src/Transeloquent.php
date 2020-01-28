@@ -53,7 +53,6 @@ trait Transeloquent
     public function attributesToArray()
     {
         $attributes = parent::attributesToArray();
-
         return array_merge($attributes, collect($this->transeloquent['attributes'])->toArray());
     }
 
@@ -200,8 +199,9 @@ trait Transeloquent
     private function getTranslateOnlyAttributes()
     {
         $attributes = collect($this->getUpdatedAttributes());
+        $filtered = collect([]);
         foreach ($this->translateOnly ?? [] as $value) {
-            $filtered = $attributes->only($value);
+            $filtered= $filtered->merge($attributes->only($value));
         }
 
         return $filtered;
