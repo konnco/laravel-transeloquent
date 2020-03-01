@@ -199,10 +199,12 @@ trait Transeloquent
     private function getTranslateOnlyAttributes()
     {
         $attributes = collect($this->getUpdatedAttributes());
-        $filtered = collect([]);
         foreach ($this->translateOnly ?? [] as $value) {
-            $filtered= $filtered->merge($attributes->only($value));
+            $filtered[] = $attributes->only($value)->toArray();
         }
+        $filtered = collect($filtered)->mapWithKeys(function($value) {
+            return $value;
+        });
 
         return $filtered;
     }
