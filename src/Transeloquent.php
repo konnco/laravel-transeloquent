@@ -200,8 +200,11 @@ trait Transeloquent
     {
         $attributes = collect($this->getUpdatedAttributes());
         foreach ($this->translateOnly ?? [] as $value) {
-            $filtered = $attributes->only($value);
+            $filtered[] = $attributes->only($value)->toArray();
         }
+        $filtered = collect($filtered)->mapWithKeys(function($value) {
+            return $value;
+        });
 
         return $filtered;
     }
